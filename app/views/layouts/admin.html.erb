@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Plantt" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="admin">
+        <nav class="sidebar">
+            <div>
+                <div class="logo-section">
+                    <h1>Plantt<br/>Admin</h1>
+                    <div class="logo">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                        <div class="four"></div>
+                    </div>
+                </div>
+                <ul class="links">
+                    <li>
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-box"></i>
+                        <span>Products</span>
+                    </li>
+                    <li>
+                        <%= link_to admin_categories_path do %>
+                            <i class="fas fa-list"></i>
+                            <span>Category</span>
+                        <% end %>
+                    </li>
+                    <li>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Orders</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-sign-out"></i>
+                        <span>Sign out</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="content">
+            <%= yield %>
+        </div>
+    </main>
+  </body>
+</html>
