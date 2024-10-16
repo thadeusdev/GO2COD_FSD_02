@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Products" %>
+
+<h1>Products</h1>
+
+<%= link_to "New product", new_admin_product_path %>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_products.each do |admin_product| %>
+      <tr>
+        <td>
+          <%= admin_product.images.any? ? image_tag(admin_product.images.first, style: "width: 50px; height: 50px") : image_tag("https://via.placeholder.com/50") %>
+        </td>
+        <td>
+          <%= link_to admin_product.name, edit_admin_product_path(admin_product) %>
+        </td>
+        <td>
+          <%= admin_product.description %>
+        </td>
+        <td>
+          Ksh <%= admin_product.price %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

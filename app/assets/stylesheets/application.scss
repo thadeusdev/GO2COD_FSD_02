@@ -25,10 +25,13 @@ body{
     .admin{
         display: grid;
         grid-template-columns: 20% 80%;
+        height: 100vh; /* Ensure full viewport height */
 
         .sidebar{
             background-color: $light-bg;
             height: 100vh;
+            position: sticky;
+            top: 0;
 
             .logo-section{
                 display: flex;
@@ -72,7 +75,90 @@ body{
         }
 
         .content{
-            // background-color: $light-black;
+            // Contents viewed on admin page
+            overflow-y: scroll; /* Enable scrolling for the content */
+            padding: 20px; /* Add some padding for the content */
+            scrollbar-width: none;
+
+            table{
+                background: $light-bg;
+                width: 100%;
+                overflow-x: scroll;
+            }
+        }
+    }
+
+    
+    .main-nav{
+        background: $black;
+        
+        .main-nav-container{
+            width: 80vw;
+            color: white;            
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto; /* Center the container */
+    
+            .nav-logo{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+        
+                .logo-n{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    height: 30px;
+                    width: 30px;
+        
+                    .n1{
+                        background-color: white;
+                        border-radius: 50% 50% 50% 0;
+                    }
+                    .n2{
+                        background-color: white;
+                        border-radius: 0 50% 50% 50%;
+                    }
+                    .n3{
+                        background-color: white;
+                        border-radius: 50% 50% 0 50%;
+                    }
+                    .n4{
+                        background-color: white;
+                        border-radius: 50% 0 50% 50%;
+                    }
+                }
+        
+                .nav-h{
+                    font-size: 30px;
+                }
+            }
+        
+            .nav-links{
+                display: flex;
+                gap: 10px;
+            }
+        
+            .nav-icons{
+                display: flex;
+                gap: 10px;
+
+                .icon{
+                    width: 30px;
+                    height: 30px;
+                    background-color: $gray;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    i{
+                        font-size: 12px;
+                        color: white;
+                    }
+                }
+            }
         }
     }
 }

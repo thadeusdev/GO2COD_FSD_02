@@ -1,5 +1,3 @@
 class Category < ApplicationRecord
-    def index
-        
-    end
+    has_one_attached :image
 end
