@@ -1,0 +1,16 @@
+<div class="single-product">
+    <div class="single-container">
+        <div class="images-container">
+            <div class="big-image">
+                <%# Display the first image as the default big image %>
+                <%= image_tag @product.images.first, id: "big-image", alt: "Main Image" %>
+            </div>
+            <div class="other-images-smaller">
+                <% @product.images.each do |image| %>
+                    <%= image_tag image, class: "small-image", alt: "Product Thumbnail", data: { image_url: image } %>
+                <% end %>
+            </div>
+        </div>
+        <div class="text-container">text</div>
+    </div>
+</div>

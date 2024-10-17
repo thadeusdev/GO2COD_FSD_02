@@ -46,6 +46,12 @@
     <%= form.check_box :active %>
   </div>
 
+  <% unless admin_product.new_record? %>
+    <div>
+      <%= link_to "Product stock", admin_product_stocks_path(admin_product) %>
+    </div>
+  <% end %>
+
   <div>
     <%= form.submit %>
   </div>

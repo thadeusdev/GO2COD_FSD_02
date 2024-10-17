@@ -1,0 +1,67 @@
+<div class="hero-category">
+    <%= image_tag("leaf-1", alt: "Hero Image 1", class: "shop-image") %>
+    <div class="shop-h">
+        <h1>Shop</h1>
+    </div>
+    <div class="leaf-2-container">
+        <%= image_tag("leaf-2", alt: "Hero Image 2", class: "shop-image") %>
+    </div>
+</div>
+
+<div class="category-items"> 
+  <div class="items-container">
+    <!-- Price Range Filter Form -->
+    <%= form_with url: category_path(@category), method: :get, local: true do %>
+      <div class="filter">
+        <label for="price-range">Price Range:</label>
+        <input type="range" id="price-range" name="price" min="0" max="3000" value="<%= params[:price] || 500 %>" class="slider" oninput="this.nextElementSibling.innerText = this.value">
+        <span id="price-label"><%= params[:price] || 500 %></span>
+        <%= submit_tag "Filter", class: "filter-btn" %>
+      </div>
+    <% end %>
+
+    <!-- Conditional Rendering Based on Filter -->
+    <% if params[:price].present? %>
+      <!-- If filter is applied, show filtered products -->
+      <div class="section-products">
+        <%# <h3>Filtered Products</h3> %>
+        <div class="filtered-products">            
+            <% if @products.empty? %>
+            <p>No products found in this price range.</p>
+            <% else %>
+            <% @products.each do |product| %>
+                <%= link_to product_path(product) do %> 
+                <div class="product-item">
+                    <div class="product-image">
+                    <%= product.images.first ? image_tag(product.images.first, class: "product-img") : 'No image available' %>
+                    </div>
+                    <span><%= product.name %></span>
+                    <span>Ksh <%= product.price %></span>
+                </div>
+                <% end %>
+            <% end %>
+            <% end %>
+        </div>
+      </div>
+    <% else %>
+      <!-- If no filter is applied, show all products -->
+      <div class="products">
+        <% if @products.empty? %>
+          <p>No products found</p>
+        <% else %>
+          <% @products.each do |product| %>
+            <%= link_to product_path(product) do %> 
+              <div class="product-item">
+                <div class="product-image">
+                  <%= product.images.first ? image_tag(product.images.first, class: "product-img") : 'No image available' %>
+                </div>
+                <span><%= product.name %></span>
+                <span>Ksh <%= product.price %></span>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

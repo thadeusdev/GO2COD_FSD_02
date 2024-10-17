@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :products
+    resources :products do
+      resources :stocks
+    end
     resources :categories
   end
   devise_for :admins
@@ -20,6 +22,14 @@ Rails.application.routes.draw do
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
   end
+
+  # users
+  resources :categories, only: [:show]
+  resources :products, only: [:show]
+
+  resources :categories, only: [:show] do
+    get 'filter_products', on: :member
+  end  
 
   get "admin" => "admin#index"
 
