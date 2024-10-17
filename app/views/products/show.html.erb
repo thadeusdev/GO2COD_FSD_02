@@ -11,6 +11,34 @@
                 <% end %>
             </div>
         </div>
-        <div class="text-container">text</div>
+        <div class="text-container">
+            <h3><%= @product.name %></h3>
+            <span><%= @product.description %></span>
+            <h5>Ksh <%= @product.price %></h5>
+            <div class="actions">
+                <div class="track">
+                    <span>-</span>
+                    <span>1</span>
+                    <span>+</span>
+                </div>
+                <%= button_to "Add to Cart  #{content_tag(:i, '', class: 'fa-solid fa-cart-shopping')}".html_safe, "#", class: "hero-btn" %>
+                <div class="size">
+                    <span>Size</span>
+                    <% @product.stocks.each do |stock| %>
+                        <% if stock.amount > 0 %>
+                        <button data-action="click->products#selectSize" value="<%= stock.size %>" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                            <%= stock.size %>
+                        </button>
+                        <% else %> 
+                        <button disabled value="<%= stock.size %>" class="disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                            <%= stock.size %>
+                        </button>
+                        <% end %>
+                    <% end %>
+                </div>
+                <!-- selecting size e.g M, L, S  -->
+                <div id="selected-size"></div>
+            </div>
+        </div>
     </div>
 </div>
