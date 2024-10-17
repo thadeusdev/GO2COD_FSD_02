@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # users
   resources :categories, only: [:show]
-  resources :products, only: [:show]
+  resources :products, only: [:index, :show]
 
   resources :categories, only: [:show] do
     get 'filter_products', on: :member
